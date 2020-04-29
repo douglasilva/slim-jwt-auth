@@ -1,5 +1,5 @@
 {
-    "name": "tuupola/slim-jwt-auth",
+    "name": "protosprojetos/slim-jwt-auth",
     "description": "JSON Web Token Authorization Middleware for Slim Framework",
     "keywords": [
         "slim",
@@ -8,7 +8,7 @@
         "json",
         "auth"
     ],
-    "homepage": "https://github.com/tuupola/slim-jwt-auth",
+    "homepage": "https://github.com/protosprojetos/slim-jwt-auth",
     "license": "MIT",
     "authors": [
         {
