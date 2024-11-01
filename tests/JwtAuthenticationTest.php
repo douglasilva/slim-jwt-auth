@@ -122,41 +122,6 @@ class JwtBasicAuthenticationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("Foo", $app->response()->body());
     }
 
-    public function xxtestShouldReturn200WithTokenFromEncryptedCookie()
-    {
-        \Slim\Environment::mock(array(
-            "SCRIPT_NAME" => "/index.php",
-            "PATH_INFO" => "/api/foo",
-            "HTTP_COOKIE" => "token=" . self::$encrypted_token,
-            "slim.url_scheme" => "https"
-        ));
-
-        $app = new \Slim\Slim(array(
-            "cookies.encrypt" => true,
-            "cookies.secret_key" => "cookiekey",
-            "cookies.cipher" => MCRYPT_RIJNDAEL_256,
-            "cookies.cipher_mode" => MCRYPT_MODE_CBC
-        ));
-
-        $app->get("/foo/bar", function () {
-            echo "Success";
-        });
-        $app->get("/api/foo", function () {
-            echo "Foo";
-        });
-
-        $auth = new \Slim\Middleware\JwtAuthentication(array(
-            "secret" => "supersecretkeyyoushouldnotcommittogithub"
-        ));
-
-        $auth->setApplication($app);
-        $auth->setNextMiddleware($app);
-        $auth->call();
-
-        $this->assertEquals(200, $app->response()->status());
-        $this->assertEquals("Foo", $app->response()->body());
-    }
-
     public function testShouldReturn401WithFalseFromCallback()
     {
         \Slim\Environment::mock(array(
